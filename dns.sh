@@ -15,11 +15,11 @@ help="
 
 	example 
 		dns.sh [-s] -a www.baidu.com  [-d br-lan] 
-		dns.sh -c www.baidu.com [-d br-lan] 
+		dns.sh -c -a www.baidu.com [-d br-lan] 
 		dns.sh -h
 
 "
-while getopts :sch:d: opt
+while getopts :scha:d: opt
 do
 	case "$opt" in
 	
