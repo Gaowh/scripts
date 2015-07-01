@@ -1,12 +1,22 @@
 #!/bin/sh
 
 help="
-	-s , set
+        dns.sh [-s][-c][-h] -a hostname [-d device]
+
+
+	-s , set  
 	-c , clear
-	-h , hostname
-	-d , gateway device
+	-a , hostname ,  this is must specified 
+	-d , gateway device  , if not specified then use br-lan
+	-h , see help
 
 	can't use -s with -c
+	if you don't specified -s and -c then use default -s
+
+	example 
+		dns.sh [-s] -a www.baidu.com  [-d br-lan] 
+		dns.sh -c www.baidu.com [-d br-lan] 
+		dns.sh -h
 
 "
 while getopts :sch:d: opt
@@ -31,7 +41,7 @@ do
 			exit
 		fi;;
 
-	h)
+	a)
 		hostname=$OPTARG
 		echo $hostname;;
 	d)
@@ -46,7 +56,7 @@ done
 
 if [ -z $hostname ] ; then
 	
-	echo "you must specified hostname use -h"
+	echo "you must specified hostname use -a"
 	exit
 fi
 
